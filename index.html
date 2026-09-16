@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>John Aldwin Arguelles — IT Graduate, Network Technology</title>
+<meta name="description" content="Portfolio of John Aldwin Arguelles, an Information Technology student at Batangas State University specializing in Network Technology, with interests in web development, networking, and system administration." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.323.0/umd/lucide.min.js"></script>
+
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          ink: { DEFAULT: '#111111', soft: '#5B5B5F' },
+          paper: { DEFAULT: '#FFFFFF', soft: '#F6F6F3' },
+          line: '#E7E6E1',
+          brand: { DEFAULT: '#DE2A2F', dark: '#B71F24', light: '#FBE4E4' },
+        },
+        fontFamily: {
+          display: ['"Bricolage Grotesque"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+        maxWidth: { site: '1240px' },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; }
+  .font-display { font-family: 'Bricolage Grotesque', sans-serif; }
+
+  ::selection { background: #DE2A2F; color: #fff; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ""; position: absolute; left: 0; bottom: -6px; width: 0; height: 2px;
+    background: #DE2A2F; transition: width 0.25s ease;
+  }
+  .nav-link.active::after, .nav-link:hover::after { width: 100%; }
+
+  .card-lift { transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease; }
+  .card-lift:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -20px rgba(17,17,17,0.16); }
+
+  .project-img-wrap { overflow: hidden; }
+  .project-img-wrap img { transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .project-card:hover .project-img-wrap img { transform: scale(1.06); }
+
+  .cursor-caret { border-right: 2px solid #DE2A2F; animation: blink 0.9s steps(1) infinite; }
+  @keyframes blink { 50% { border-color: transparent; } }
+
+  .btn-focus:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid #DE2A2F; outline-offset: 3px; border-radius: 4px;
+  }
+
+  #backToTop { transition: opacity 0.3s ease, transform 0.3s ease; }
+
+  .num-tick { font-variant-numeric: tabular-nums; }
+
+  .theme-icon-sun { display: none; }
+  .dark .theme-icon-sun { display: inline-block; }
+  .dark .theme-icon-moon { display: none; }
+
+  .proj-filter-btn.active { background:#111111; color:#fff; border-color:#111111; }
+  .dark .proj-filter-btn.active { background:#F6F6F3; color:#111; border-color:#F6F6F3; }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* ---------- Chatbot ---------- */
+  .chat-window {
+    transform: scale(0.92) translateY(12px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), opacity 0.2s ease;
+  }
+  .chat-window.is-open {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .chat-ping { animation: chatPing 2s ease-in-out infinite; }
+  @keyframes chatPing { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .chat-bubble {
+    max-width: 82%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+  .chat-bubble.bot { background: rgba(255,255,255,0.08); color: #fff; border-bottom-left-radius: 4px; align-self: flex-start; }
+  .chat-bubble.user { background: #DE2A2F; color: #fff; border-bottom-right-radius: 4px; align-self: flex-end; }
+  .chat-row { display: flex; }
+  .chat-row.bot { justify-content: flex-start; }
+  .chat-row.user { justify-content: flex-end; }
+
+  .quick-action-btn {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+  .quick-action-btn:hover { border-color: #DE2A2F; background: rgba(222,42,47,0.12); }
+
+  .typing-dots span {
+    display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+    background: rgba(255,255,255,0.6); margin-right: 3px;
+    animation: typingBounce 1.2s infinite ease-in-out;
+  }
+  .typing-dots span:nth-child(2) { animation-delay: 0.15s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
+
+  #chatMessages { display: flex; flex-direction: column; gap: 10px; }
+  #chatMessages::-webkit-scrollbar { width: 5px; }
+  #chatMessages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 999px; }
+
+  /* ---------- Project detail modal ---------- */
+  #projectModal { transition: opacity 0.25s ease; }
+  #projectModal .modal-panel {
+    transform: scale(0.94) translateY(16px);
+    opacity: 0;
+    transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), opacity 0.2s ease;
+  }
+  #projectModal.is-open .modal-panel { transform: scale(1) translateY(0); opacity: 1; }
+
+  .modal-carousel-track { display: flex; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+  .modal-carousel-slide { flex: 0 0 100%; }
+
+  .modal-dot { width: 7px; height: 7px; border-radius: 999px; background: #E7E6E1; transition: width 0.25s ease, background-color 0.25s ease; }
+  .dark .modal-dot { background: rgba(255,255,255,0.2); }
+  .modal-dot.active { width: 20px; background: #DE2A2F; }
+
+  /* ---------- Professional Experience carousel + detail ---------- */
+  .exp-card { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+  .exp-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -20px rgba(17,17,17,0.16); }
+  .exp-card img { transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .exp-card:hover img { transform: scale(1.05); }
+
+  .exp-dot { width: 8px; height: 8px; border-radius: 999px; background: #E7E6E1; transition: width 0.25s ease, background-color 0.25s ease; }
+  .dark .exp-dot { background: rgba(255,255,255,0.15); }
+  .exp-dot.active { width: 24px; background: #DE2A2F; }
+
+  .exp-detail {
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+  }
+  .exp-detail.is-open { max-height: 2000px; opacity: 1; }
+</style>
+</head>
+
+<body class="bg-paper dark:bg-[#0B0B0C] text-ink dark:text-[#F2F2EF] font-body antialiased transition-colors duration-300">
+
+<!-- ============ NAV ============ -->
+<header id="siteNav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <nav class="max-w-site mx-auto px-6 lg:px-10 flex items-center justify-between h-20">
+    <a href="#home" class="font-display font-semibold text-lg tracking-tight">
+      John Aldwin Arguelles
+    </a>
+
+    <ul class="hidden md:flex items-center gap-9 text-sm font-medium">
+      <li><a href="#home" class="nav-link py-1">Home</a></li>
+      <li><a href="#about" class="nav-link py-1">About</a></li>
+      <li><a href="#projects" class="nav-link py-1">Projects</a></li>
+      <li><a href="#experience" class="nav-link py-1">Professional Experience</a></li>
+      <li><a href="#education" class="nav-link py-1">Education</a></li>
+      <li><a href="#contact" class="nav-link py-1">Contact</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <button id="themeToggle" aria-label="Toggle dark mode" class="w-10 h-10 rounded-full border border-line dark:border-white/15 flex items-center justify-center hover:border-ink dark:hover:border-white/40 transition-colors">
+        <i data-lucide="moon" class="w-4 h-4 theme-icon-moon"></i>
+        <i data-lucide="sun" class="w-4 h-4 theme-icon-sun"></i>
+      </button>
+      <button id="menuToggle" aria-label="Open menu" aria-expanded="false" class="md:hidden w-10 h-10 rounded-full border border-line dark:border-white/15 flex items-center justify-center">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- mobile menu -->
+  <div id="mobileMenu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-paper/95 dark:bg-[#0B0B0C]/95 backdrop-blur border-b border-line dark:border-white/10">
+    <ul class="flex flex-col px-6 py-4 gap-1 text-base font-medium">
+      <li><a href="#home" class="mobile-link block py-3 border-b border-line/70 dark:border-white/10">Home</a></li>
+      <li><a href="#about" class="mobile-link block py-3 border-b border-line/70 dark:border-white/10">About</a></li>
+      <li><a href="#projects" class="mobile-link block py-3 border-b border-line/70 dark:border-white/10">Projects</a></li>
+      <li><a href="#experience" class="mobile-link block py-3 border-b border-line/70 dark:border-white/10">Professional Experience</a></li>
+      <li><a href="#education" class="mobile-link block py-3 border-b border-line/70 dark:border-white/10">Education</a></li>
+      <li><a href="#contact" class="mobile-link block py-3">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
+  <div class="pointer-events-none absolute -top-24 -right-24 w-[420px] h-[420px] rounded-full bg-brand/5 blur-3xl"></div>
+  <div class="pointer-events-none absolute top-1/3 -left-20 w-64 h-64 border border-line dark:border-white/10 rounded-full"></div>
+
+  <div class="max-w-site mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 items-center relative">
+    <div class="lg:col-span-7">
+      <span class="inline-flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border border-line dark:border-white/15 text-ink-soft dark:text-white/60 mb-8">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-60"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
+        </span>
+        Available for opportunities
+      </span>
+
+      <h1 class="font-display font-semibold leading-[0.98] tracking-tight text-[15vw] sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
+        Hi, I'm <span id="typedName">Alds</span><span class="cursor-caret"></span>
+      </h1>
+
+      <p class="mt-6 font-display text-2xl sm:text-3xl lg:text-4xl text-ink-soft dark:text-white/70 leading-tight max-w-xl">
+        Information Technology Graduate Major in Network Technology.
+      </p>
+
+      <p class="mt-6 text-base sm:text-lg text-ink-soft dark:text-white/60 max-w-lg leading-relaxed">
+        I'm interested in web development, networking, system administration, and building practical technology solutions.
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a href="#projects" class="inline-flex items-center gap-2 bg-ink dark:bg-white text-white dark:text-ink px-7 py-3.5 rounded-full font-medium text-sm hover:bg-brand dark:hover:bg-brand dark:hover:text-white transition-colors">
+          View My Work
+          <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+        </a>
+        <a href="#contact" class="inline-flex items-center gap-2 border border-line dark:border-white/20 px-7 py-3.5 rounded-full font-medium text-sm hover:border-ink dark:hover:border-white transition-colors">
+          Let's Connect
+        </a>
+      </div>
+
+      <div class="mt-14 flex items-center gap-8 text-ink-soft dark:text-white/50">
+        <div class="h-px w-12 bg-line dark:bg-white/15"></div>
+        <p class="text-sm">Batangas State University TNEU Lipa Campus · BSIT, Network Technology</p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="relative rounded-[2rem] overflow-hidden aspect-[4/5] shadow-2xl shadow-ink/10">
+        <img src="assets/images/gradpic.jpg" alt="Portrait of John Aldwin Arguelles" class="w-full h-full object-cover" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+        <div class="absolute bottom-5 left-5 right-5 bg-white/90 dark:bg-black/70 backdrop-blur rounded-2xl px-5 py-4 flex items-center justify-between">
+          <div>
+            <p class="text-xs uppercase tracking-wide text-ink-soft dark:text-white/50">Based in</p>
+            <p class="font-medium text-sm">Batangas, Philippines</p>
+          </div>
+          <i data-lucide="map-pin" class="w-5 h-5 text-brand"></i>
+        </div>
+      </div>
+      <div class="absolute -top-6 -left-6 w-24 h-24 rounded-2xl border border-brand/30 -z-10 hidden sm:block"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="py-24 lg:py-32 border-t border-line dark:border-white/10">
+  <div class="max-w-site mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-4 reveal">
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold tracking-tight sticky top-28">About Me</h2>
+    </div>
+
+    <div class="lg:col-span-8">
+      <p class="text-xl sm:text-2xl leading-relaxed text-ink-soft dark:text-white/70 reveal font-display font-medium">
+        I build practical solutions where infrastructure, software, and people meet.
+      </p>
+      <p class="mt-6 text-base sm:text-lg leading-relaxed text-ink-soft dark:text-white/60 max-w-2xl reveal">
+        As a Network Technology major Graduate, with hands-on exposure to web development, networking, databases, system administration, and IT support. My experience includes Q & A for web-based projects, working with documentation, troubleshooting technical issues, and supporting real-world office operations.
+
+        I’m particularly interested in creating technology that makes processes simpler and more efficient — from developing systems that reduce manual work to building responsive interfaces and solving the technical problems behind them.
+      </p>
+
+      <div class="mt-14 grid grid-cols-3 gap-6 sm:gap-10 reveal">
+        <div class="border-t border-line dark:border-white/15 pt-5">
+          <p class="font-display text-4xl sm:text-5xl font-semibold" data-counter="500" data-suffix="+">0</p>
+          <p class="mt-2 text-sm text-ink-soft dark:text-white/50">OJT Hours</p>
+        </div>
+        <div class="border-t border-line dark:border-white/15 pt-5">
+          <p class="font-display text-4xl sm:text-5xl font-semibold" data-counter="1" data-suffix="+">0</p>
+          <p class="mt-2 text-sm text-ink-soft dark:text-white/50">Major Projects</p>
+        </div>
+        <div class="border-t border-line dark:border-white/15 pt-5">
+          <p class="font-display text-4xl sm:text-5xl font-semibold" data-counter="5" data-suffix="+">0</p>
+          <p class="mt-2 text-sm text-ink-soft dark:text-white/50">Technologies</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<!-- ============ PROJECTS ============ -->
+<section id="projects" class="py-24 lg:py-32 border-t border-line dark:border-white/10">
+  <div class="max-w-site mx-auto px-6 lg:px-10">
+    <div class="mb-14 reveal">
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold tracking-tight">Selected Projects</h2>
+      <p class="mt-4 text-ink-soft dark:text-white/60 max-w-md">A collection of projects I've worked on throughout my studies.</p>
+    </div>
+
+    <div id="projectGrid" class="grid md:grid-cols-2 gap-8">
+      <!-- Project 1 -->
+      <article class="project-card card-lift rounded-3xl border border-line dark:border-white/10 overflow-hidden bg-white dark:bg-white/[0.02] reveal">
+        <div class="project-img-wrap aspect-[16/10]">
+          <img src="assets/images/landingpage.png" alt="Screenshot placeholder for RedSpartanData reporting platform" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="p-7">
+          <p class="text-xs font-medium text-brand tracking-wide">Web Platform</p>
+          <h3 class="mt-2 font-display text-2xl font-semibold">SpartanData</h3>
+          <p class="mt-3 text-sm leading-relaxed text-ink-soft dark:text-white/60">An automated web-based reporting platform designed to centralize data collection and reduce duplicated Excel-based reports across university offices.</p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 rounded-full bg-paper-soft dark:bg-white/10 border border-line dark:border-white/10">HTML</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-paper-soft dark:bg-white/10 border border-line dark:border-white/10">CSS</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-paper-soft dark:bg-white/10 border border-line dark:border-white/10">JavaScript</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-paper-soft dark:bg-white/10 border border-line dark:border-white/10">PHP</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-paper-soft dark:bg-white/10 border border-line dark:border-white/10">MySQL</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-paper-soft dark:bg-white/10 border border-line dark:border-white/10">Hostinger</span>
+          </div>
+          <div class="mt-6 flex items-center gap-4">
+            <button type="button" class="view-project-link inline-flex items-center gap-1.5 text-sm font-medium hover:text-brand transition-colors" data-project="redspartandata">View Project <i data-lucide="arrow-up-right" class="w-4 h-4"></i></button>
+            <a href="https://github.com/alds45r/spartandata/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft dark:text-white/50 hover:text-ink dark:hover:text-white transition-colors">GitHub <i data-lucide="github" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="project-card card-lift rounded-3xl border border-line dark:border-white/10 overflow-hidden bg-white dark:bg-white/[0.02] reveal">
+        <div class="project-img-wrap aspect-[16/10]">
+          <img src="assets/images/safehaven.png" alt="Screenshot placeholder for Safe Haven support platform" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div class="p-7">
+          <p class="text-xs font-medium text-brand tracking-wide">Web Platform</p>
+          <h3 class="mt-2 font-display text-2xl font-semibold">Safe Haven</h3>
+          <p class="mt-3 text-sm leading-relaxed text-ink-soft dark:text-white/60">A web-based platform designed to provide accessible reporting tools, emergency resources, educational materials, and support information.</p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="text-xs px-3 py-1 rounded-full bg-paper-soft dark:bg-white/10 border border-line dark:border-white/10">HTML</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-paper-soft dark:bg-white/10 border border-line dark:border-white/10">CSS</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-paper-soft dark:bg-white/10 border border-line dark:border-white/10">JavaScript</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-paper-soft dark:bg-white/10 border border-line dark:border-white/10">PHP</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-paper-soft dark:bg-white/10 border border-line dark:border-white/10">MySQL</span>
+            <span class="text-xs px-3 py-1 rounded-full bg-paper-soft dark:bg-white/10 border border-line dark:border-white/10">XAMPP</span>
+          </div>
+          <div class="mt-6 flex items-center gap-4">
+            <button type="button" class="view-project-link inline-flex items-center gap-1.5 text-sm font-medium hover:text-brand transition-colors" data-project="safehaven">View Project <i data-lucide="arrow-up-right" class="w-4 h-4"></i></button>
+            <a href="https://github.com/alds45r/safehaven/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft dark:text-white/50 hover:text-ink dark:hover:text-white transition-colors">GitHub <i data-lucide="github" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROFESSIONAL EXPERIENCE ============ -->
+<section id="experience" class="py-24 lg:py-32 border-t border-line dark:border-white/10">
+  <div class="max-w-site mx-auto px-6 lg:px-10">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 reveal">
+      <div>
+        <h2 class="font-display text-4xl sm:text-5xl font-semibold tracking-tight">Professional Experience</h2>
+        <p class="mt-4 text-ink-soft dark:text-white/60 max-w-md">On-the-job training, Training Center for Certifications for Experience.</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="expPrev" aria-label="Previous experience" class="w-11 h-11 rounded-full border border-line dark:border-white/15 flex items-center justify-center hover:border-ink dark:hover:border-white/40 transition-colors">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        </button>
+        <button id="expNext" aria-label="Next experience" class="w-11 h-11 rounded-full border border-line dark:border-white/15 flex items-center justify-center hover:border-ink dark:hover:border-white/40 transition-colors">
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Carousel -->
+    <div class="relative reveal">
+      <div id="expTrack" class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth no-scrollbar" tabindex="0" aria-label="Professional experience carousel, use arrow keys or the buttons above to navigate">
+        <!-- cards injected by JS from the experiences data array -->
+      </div>
+      <div id="expDots" class="flex items-center justify-center gap-2 mt-8"></div>
+    </div>
+
+    <!-- Detail panel (dynamically filled, one instance reused for every card) -->
+    <div id="expDetailPanel" class="exp-detail mt-4 rounded-3xl border border-line dark:border-white/10 bg-paper-soft dark:bg-white/[0.03] overflow-hidden">
+      <div class="p-7 lg:p-10">
+        <button id="expDetailClose" type="button" class="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft dark:text-white/50 hover:text-ink dark:hover:text-white transition-colors">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Experience
+        </button>
+
+        <p id="expDetailDate" class="mt-6 text-sm text-ink-soft dark:text-white/50"></p>
+        <h3 id="expDetailTitle" class="mt-1 font-display text-2xl sm:text-3xl font-semibold"></h3>
+        <p id="expDetailDescription" class="mt-4 text-ink-soft dark:text-white/60 max-w-2xl leading-relaxed"></p>
+
+        <div id="expDetailResponsibilitiesWrap" class="mt-8">
+          <p class="text-xs font-medium text-brand tracking-wide uppercase">Responsibilities</p>
+          <ul id="expDetailResponsibilities" class="mt-3 grid sm:grid-cols-2 gap-x-8 gap-y-3 max-w-2xl"></ul>
+        </div>
+
+        <div id="expDetailSkillsWrap" class="mt-8">
+          <p class="text-xs font-medium text-brand tracking-wide uppercase">Skills & Tools</p>
+          <div id="expDetailSkills" class="mt-3 flex flex-wrap gap-2"></div>
+        </div>
+
+        <div id="expDetailLearningWrap" class="mt-8">
+          <p class="text-xs font-medium text-brand tracking-wide uppercase">What I Learned</p>
+          <p id="expDetailLearning" class="mt-3 text-ink-soft dark:text-white/60 max-w-2xl leading-relaxed"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section id="education" class="py-24 lg:py-32 bg-paper-soft dark:bg-white/[0.03] border-t border-line dark:border-white/10">
+  <div class="max-w-site mx-auto px-6 lg:px-10">
+    <h2 class="font-display text-4xl sm:text-5xl font-semibold tracking-tight mb-14 reveal">Education</h2>
+
+    <div class="relative pl-8 sm:pl-10 reveal">
+      <div class="absolute left-0 sm:left-1 top-2 bottom-2 w-px bg-line dark:bg-white/15"></div>
+      <div class="relative">
+        <span class="absolute -left-8 sm:-left-10 top-1.5 w-4 h-4 rounded-full bg-brand ring-4 ring-brand/15"></span>
+        <p class="text-sm text-ink-soft dark:text-white/50">2022 — 2026</p>
+        <h3 class="mt-1 font-display text-2xl font-semibold">Bachelor of Science in Information Technology</h3>
+        <p class="mt-1 text-ink-soft dark:text-white/60">Major in Network Technology</p>
+        <p class="mt-4 text-sm text-ink-soft dark:text-white/50 flex items-center gap-2">
+          <i data-lucide="graduation-cap" class="w-4 h-4 text-brand"></i> Batangas State University TNEU Lipa Campus
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="py-24 lg:py-32 bg-ink text-white dark:bg-white/[0.03] border-t border-line dark:border-white/10">
+  <div class="max-w-site mx-auto px-6 lg:px-10">
+    <div class="max-w-xl mx-auto text-center reveal">
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold tracking-tight">Get in Touch With Alds.</h2>
+      <p class="mt-5 text-white/70 leading-relaxed">I’d love to hear about an opportunity where I can contribute and grow.</p>
+
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <a href= 'https://mail.google.com/mail/u/0/#sent?compose=GTvVlcSBpgMwjBRHpdgtLcgLswHbHRXhrTKDxDpTKSJcFsXctWMTVfcWbhQGLhqqDCbrhPFgmGbCT' title="Email John" class="inline-flex items-center gap-2 bg-white text-ink px-7 py-3.5 rounded-full font-medium text-sm hover:bg-brand hover:text-white transition-colors">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Email Me
+        </a>
+      </div>
+
+      <div class="mt-12 flex items-center justify-center gap-4">
+        <a href= 'https://mail.google.com/mail/u/0/#sent?compose=GTvVlcSBpgMwjBRHpdgtLcgLswHbHRXhrTKDxDpTKSJcFsXctWMTVfcWbhQGLhqqDCbrhPFgmGbCT' aria-label="Email" title="Email" class="social-icon-btn w-11 h-11 rounded-full border border-white/20 flex items-center justify-center hover:border-brand hover:bg-brand transition-all duration-300 hover:scale-110">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href='https://github.com/alds45r' target="_blank" rel="noopener" aria-label="GitHub" title="GitHub" class="social-icon-btn w-11 h-11 rounded-full border border-white/20 flex items-center justify-center hover:border-brand hover:bg-brand transition-all duration-300 hover:scale-110">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </a>
+        <a href= 'https://www.facebook.com/ArguellesAldwin' target="_blank" rel="noopener" aria-label="Facebook" title="Facebook" class="social-icon-btn w-11 h-11 rounded-full border border-white/20 flex items-center justify-center hover:border-brand hover:bg-brand transition-all duration-300 hover:scale-110">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V9Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </a>
+        <a href= 'https://www.linkedin.com/in/john-adwin-arguelles-7443a93a4/' target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn" class="social-icon-btn w-11 h-11 rounded-full border border-white/20 flex items-center justify-center hover:border-brand hover:bg-brand transition-all duration-300 hover:scale-110">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 10v7M7 7v.01M11 17v-4.5c0-1.4 1-2.5 2.5-2.5S16 11.1 16 12.5V17M11 10v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="py-10 border-t border-line dark:border-white/10">
+  <div class="max-w-site mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+    <div class="text-center sm:text-left">
+      <p class="font-display font-semibold">John Aldwin Arguelles</p>
+      <p class="text-sm text-ink-soft dark:text-white/50">Information Technology Student</p>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <a href="https://github.com/alds45r" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub" class="social-icon-btn w-9 h-9 rounded-full border border-line dark:border-white/15 flex items-center justify-center hover:border-brand hover:text-brand transition-all duration-300 hover:scale-110">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="https://www.facebook.com/ArguellesAldwin" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook" class="social-icon-btn w-9 h-9 rounded-full border border-line dark:border-white/15 flex items-center justify-center hover:border-brand hover:text-brand transition-all duration-300 hover:scale-110">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V9Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/john-adwin-arguelles-7443a93a4" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn" class="social-icon-btn w-9 h-9 rounded-full border border-line dark:border-white/15 flex items-center justify-center hover:border-brand hover:text-brand transition-all duration-300 hover:scale-110">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7 10v7M7 7v.01M11 17v-4.5c0-1.4 1-2.5 2.5-2.5S16 11.1 16 12.5V17M11 10v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="https://mail.google.com/mail/u/0/#sent?compose=GTvVlcSBpgMwjBRHpdgtLcgLswHbHRXhrTKDxDpTKSJcFsXctWMTVfcWbhQGLhqqDCbrhPFgmGbCT" aria-label="Email" title="Email" class="social-icon-btn w-9 h-9 rounded-full border border-line dark:border-white/15 flex items-center justify-center hover:border-brand hover:text-brand transition-all duration-300 hover:scale-110">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <p class="text-sm text-ink-soft dark:text-white/50">&copy; <span id="year"></span> John Aldwin Arguelles</p>
+  </div>
+</footer>
+
+<button id="backToTop" aria-label="Back to top" class="fixed bottom-6 left-6 w-12 h-12 rounded-full bg-ink dark:bg-white text-white dark:text-ink flex items-center justify-center shadow-lg opacity-0 pointer-events-none z-40">
+  <i data-lucide="arrow-up" class="w-5 h-5"></i>
+</button>
+
+<!-- ============ FLOATING AI CHATBOT ============ -->
+<div id="chatbotRoot" class="fixed z-50 bottom-4 right-4 sm:bottom-6 sm:right-6 flex flex-col items-end">
+
+  <!-- Chat window -->
+  <div id="chatWindow"
+       class="chat-window mb-4 w-[calc(100vw-32px)] max-w-[360px] h-[450px] sm:h-[500px] rounded-2xl border border-line dark:border-white/10 bg-ink text-white shadow-2xl flex flex-col overflow-hidden origin-bottom-right"
+       role="dialog" aria-modal="true" aria-label="Portfolio Assistant chat window" hidden>
+
+    <!-- Header -->
+    <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
+      <div>
+        <p class="font-display font-semibold text-sm">Portfolio Assistant</p>
+        <p class="mt-0.5 flex items-center gap-1.5 text-xs text-white/50">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Online
+        </p>
+      </div>
+      <button id="chatClose" aria-label="Close chat" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <!-- Messages -->
+    <div id="chatMessages" class="flex-1 overflow-y-auto px-4 py-4 space-y-3 text-sm">
+      <!-- messages injected by JS -->
+    </div>
+
+    <!-- Quick actions -->
+    <div id="chatQuickActions" class="px-4 pb-3 flex flex-wrap gap-2 shrink-0">
+      <button type="button" class="quick-action-btn" data-topic="about">About Me</button>
+      <button type="button" class="quick-action-btn" data-topic="skills">Skills</button>
+      <button type="button" class="quick-action-btn" data-topic="experience">Experience</button>
+      <button type="button" class="quick-action-btn" data-topic="projects">Projects</button>
+      <button type="button" class="quick-action-btn" data-topic="education">Education</button>
+      <button type="button" class="quick-action-btn" data-topic="contact">Contact</button>
+    </div>
+
+    <!-- Input -->
+    <form id="chatForm" class="flex items-center gap-2 px-3 py-3 border-t border-white/10 shrink-0">
+      <label for="chatInput" class="sr-only">Type your message</label>
+      <input id="chatInput" name="chatInput" type="text" autocomplete="off" placeholder="Type your message..." class="flex-1 bg-white/5 border border-white/15 rounded-full px-4 py-2.5 text-sm placeholder:text-white/30 focus:border-brand outline-none transition-colors" />
+      <button type="submit" aria-label="Send message" class="w-10 h-10 shrink-0 rounded-full bg-brand text-white flex items-center justify-center hover:bg-brand-dark transition-colors">
+        <i data-lucide="send" class="w-4 h-4"></i>
+      </button>
+    </form>
+  </div>
+
+  <!-- Floating toggle button -->
+  <button id="chatToggle" aria-label="Open Portfolio Assistant chat" aria-expanded="false"
+          class="relative w-16 h-16 sm:w-14 sm:h-14 rounded-full bg-brand text-white shadow-lg flex items-center justify-center hover:scale-105 hover:shadow-xl transition-transform duration-200">
+    <span class="absolute top-0 right-0 w-3 h-3 rounded-full bg-white ring-2 ring-brand chat-ping"></span>
+    <i data-lucide="message-circle" class="w-6 h-6" id="chatToggleIconOpen"></i>
+    <i data-lucide="x" class="w-6 h-6 hidden" id="chatToggleIconClose"></i>
+  </button>
+</div>
+
+<!-- ============ PROJECT DETAIL MODAL ============ -->
+<div id="projectModal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
+  <div class="modal-panel w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-line dark:border-white/10 bg-white dark:bg-[#111112] text-ink dark:text-white shadow-2xl">
+
+    <div class="relative">
+      <div class="overflow-hidden rounded-t-3xl aspect-[16/10] relative">
+        <div id="modalCarouselTrack" class="modal-carousel-track h-full">
+          <!-- slides injected by JS -->
+        </div>
+      </div>
+
+      <button id="modalPrev" aria-label="Previous image" class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors">
+        <i data-lucide="chevron-left" class="w-4 h-4"></i>
+      </button>
+      <button id="modalNext" aria-label="Next image" class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors">
+        <i data-lucide="chevron-right" class="w-4 h-4"></i>
+      </button>
+      <button id="modalClose" aria-label="Close project details" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div id="modalDots" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5"></div>
+    </div>
+
+    <div class="p-7 lg:p-8">
+      <p id="modalCategory" class="text-xs font-medium text-brand tracking-wide"></p>
+      <h3 id="modalProjectTitle" class="mt-2 font-display text-2xl sm:text-3xl font-semibold"></h3>
+      <p id="modalDescription" class="mt-4 text-sm leading-relaxed text-ink-soft dark:text-white/60"></p>
+      <div id="modalTags" class="mt-5 flex flex-wrap gap-2"></div>
+      <div class="mt-7 flex items-center gap-4">
+        <a id="modalGithub" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-ink dark:bg-white text-white dark:text-ink px-6 py-3 rounded-full font-medium text-sm hover:bg-brand dark:hover:bg-brand dark:hover:text-white transition-colors">
+          <i data-lucide="github" class="w-4 h-4"></i> View on GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
