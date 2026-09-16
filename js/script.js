@@ -205,7 +205,7 @@ const EXPERIENCES = [
     id: 'Lgu ',
     title: 'LGU Mataasnakahiy - MSWDO',
     date: 'April - May 2026',
-    image: 'assets/images/experience/lgu.jpg',
+    image: 'assets/images/experience/Lgu.jpg',
     shortDescription: 'On-the-job training focused on administrative support, client-based, data encoding, document organization, and records management.',
     description: "Completed on-the-job training at the Municipal Social Welfare and Development Office (MSWDO) of the Local Government Unit of Mataasnakahoy, providing administrative and data support through document processing, record encoding, organization, and filing.",
     responsibilities: ['Assisting in the processing and organization of documents related to social welfare programs and services', 'Encoding and updating beneficiary records to maintain accurate and organized records', 'Preparing, sorting, and filing official documents', 'Maintaining confidentiality and data accuracy when handling records','Providing administrative support for day-to-day office tasks'],
