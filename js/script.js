@@ -175,9 +175,7 @@ function initTypingEffect() {
   setTimeout(type, 400);
 }
 
-/* ============================================================
-   PROFESSIONAL EXPERIENCE — data, carousel, and detail panel
-   ============================================================ */
+
 const EXPERIENCES = [
   {
     id: 'Admin Office Support',
@@ -203,7 +201,7 @@ const EXPERIENCES = [
   },
   {
     id: 'Lgu ',
-    title: 'LGU Mataasnakahiy - MSWDO',
+    title: 'LGU Mataasnakahoy - MSWDO',
     date: 'April - May 2026',
     image: 'assets/images/experience/mataasnakahoy.jpg',
     shortDescription: 'On-the-job training focused on administrative support, client-based, data encoding, document organization, and records management.',
@@ -334,13 +332,12 @@ function initExperienceCarousel() {
   
 
 
-  // Wire up "View Details" buttons
+
   track.querySelectorAll('.exp-view-details').forEach((btn) => {
     btn.addEventListener('click', () => openExperienceDetail(btn.getAttribute('data-exp')));
   });
 }
 
-/* ---------- Professional Experience detail panel ---------- */
 function openExperienceDetail(id) {
   const exp = EXPERIENCES.find((e) => e.id === id);
   if (!exp) return;
@@ -415,15 +412,13 @@ function initBackToTop() {
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-/* ---------- Auto current year in footer ---------- */
+
 function initFooterYear() {
   const el = document.getElementById('year');
   if (el) el.textContent = new Date().getFullYear();
 }
 
-/* ============================================================
-   PROJECT DETAIL MODAL (image carousel + info)
-   ============================================================ */
+
 const PROJECTS_DATA = {
   redspartandata: {
     category: 'Web Platform',
@@ -546,9 +541,7 @@ function initProjectModal() {
   });
 }
 
-/* ============================================================
-   FLOATING AI CHATBOT
-   ============================================================ */
+
 function initChatbot() {
   const root = document.getElementById('chatbotRoot');
   if (!root) return;
